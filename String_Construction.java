@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class String_Construction {
     public static void main(String[] args) {
@@ -6,36 +6,51 @@ public class String_Construction {
 
         int t = sc.nextInt();
 
-        for (int test = 0; test < t; test++) {
+        while (t-- > 0) {
             int n = sc.nextInt();
             int k = sc.nextInt();
 
-            String s = "";
-
-            for (int i = 0; i < k + 1; i++) {
-                s += '1';
+          
+            if (k == n - 1) {
+                System.out.println(-1);
+                continue;
             }
 
-            for (int i = n - k; i < n; i++) {
-                s += '0';
-            }
+            int ones = (n + 1) / 2;
+            int zeros = n / 2;
 
-            int no1 = 0;
-            int no0 = 0;
+            int blocks = n - k;
 
-            for (int i = 0; i < s.length(); i++) {
-                if (s.charAt(i) == '1') {
-                    no1++;
+            int oneBlocks = (blocks + 1) / 2;
+            int zeroBlocks = blocks / 2;
+
+          
+            int firstOneBlock = ones - oneBlocks + 1;
+            int firstZeroBlock = zeros - zeroBlocks + 1;
+
+            StringBuilder ans = new StringBuilder();
+
+            for (int i = 0; i < blocks; i++) {
+
+                if (i % 2 == 0) {
+                    
+                    int cnt = (i == 0) ? firstOneBlock : 1;
+
+                    for (int j = 0; j < cnt; j++) {
+                        ans.append('1');
+                    }
+
                 } else {
-                    no0++;
+                   
+                    int cnt = (i == 1) ? firstZeroBlock : 1;
+
+                    for (int j = 0; j < cnt; j++) {
+                        ans.append('0');
+                    }
                 }
             }
 
-            if (Math.abs(no1 - no0) <= 1 && s.length() == n ) {
-                System.out.println(s);
-            } else {
-                System.out.println("-1");
-            }
+            System.out.println(ans);
         }
 
         sc.close();

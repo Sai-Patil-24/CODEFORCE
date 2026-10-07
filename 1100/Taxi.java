@@ -1,34 +1,30 @@
-```java
 import java.util.*;
 
 public class Taxi {
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
-        int n = scanner.nextInt();
-        int[] passengers = new int[n];
+        int n = sc.nextInt();
+        int[] count = new int[5];
 
         for (int i = 0; i < n; i++) {
-            passengers[i] = scanner.nextInt();
+            count[sc.nextInt()]++;
         }
 
-        Arrays.sort(passengers);
+        int taxis = count[4];
 
-        int i = 0;
-        int j = n - 1;
-        int taxis = 0;
+        taxis += count[3];
+        count[1] = Math.max(0, count[1] - count[3]);
 
-        while (i <= j) {
-            if (passengers[i] + passengers[j] <= 4) {
-                i++;
-            }
-            j--;
+        taxis += count[2] / 2;
+
+        if (count[2] % 2 == 1) {
             taxis++;
+            count[1] = Math.max(0, count[1] - 2);
         }
+
+        taxis += (count[1] + 3) / 4;
 
         System.out.println(taxis);
-        scanner.close();
     }
 }
-```

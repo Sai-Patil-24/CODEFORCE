@@ -7,8 +7,6 @@ public class Hit_the_Lottery {
 
         int count = n/100;
         n %= 100;
-        count += n/50;
-        n %= 50;
         count += n/20;
         n %= 20;
         count += n/10;

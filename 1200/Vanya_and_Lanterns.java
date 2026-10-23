@@ -13,9 +13,9 @@ public class Vanya_and_Lanterns
 
         Arrays.sort(positions);
 
-        int maxDistance = 0;
-        for (int i = 0; i < n - 1; i++) {
-            int distance = (positions[i + 1] - positions[i]) / 2;
+        double maxDistance = 0;
+        for (double i = 0; i < n - 1; i++) {
+            double distance = (positions[(int)(i + 1)] - positions[(int)i]) / 2.0;
             if (distance > maxDistance) {
                 maxDistance = distance;
             }

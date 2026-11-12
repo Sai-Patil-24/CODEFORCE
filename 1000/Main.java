@@ -2,6 +2,7 @@
 import java.util.*;
 
 public class Main {
+
     public static void main(String[] args) {
 
         Scanner sc = new Scanner(System.in);
@@ -16,47 +17,37 @@ public class Main {
             int[] a = new int[n];
             int[] b = new int[m];
 
+            // Input array a
             for (int i = 0; i < n; i++) {
                 a[i] = sc.nextInt();
             }
 
+            // Input array b
             for (int i = 0; i < m; i++) {
                 b[i] = sc.nextInt();
             }
 
+            // Sort both arrays
             Arrays.sort(a);
             Arrays.sort(b);
 
+            // Check minimum elements required
             if (n < 2 * m) {
                 System.out.println("NO");
                 continue;
             }
 
-            int i = 0;
             boolean possible = true;
 
-            for (int j = 0; j < m; j++) {
+            // Check smaller and greater elements
+            for (int i = 0; i < m; i++) {
 
-                // Need a smaller element
-                if (i >= n || a[i] > b[j]) {
+                if (a[i] >= b[i] ||
+                    a[n - m + i] <= b[i]) {
+
                     possible = false;
                     break;
                 }
-
-                // Consume elements until we find
-                // one greater than b[j]
-                while (i < n && a[i] < b[j]) {
-                    i++;
-                }
-
-                // Check whether a greater element exists
-                if (i >= n) {
-                    possible = false;
-                    break;
-                }
-
-                // Consume the greater element
-                i++;
             }
 
             System.out.println(possible ? "YES" : "NO");

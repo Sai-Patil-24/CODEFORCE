@@ -1,7 +1,7 @@
 
 import java.util.*;
 
-public class Main {
+public class Merge_to_Match  {
 
     public static void main(String[] args) {
 
